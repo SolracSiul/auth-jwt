@@ -1,5 +1,6 @@
-import User from "../models/User"
-declare global{
+import User from "../database/schemas/User";
+
+declare global {
     namespace Express{
         export interface Request{
             user: Partial<User>
