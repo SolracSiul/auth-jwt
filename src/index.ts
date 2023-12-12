@@ -9,7 +9,7 @@ const app = express();
 const port = 3001;
 let ad = getIp()
 
-mongoose.connect(`mongodb://${ad}/apipost`, {})
+mongoose.connect(`mongodb://192.168.15.6/apipost`, {})
   .then(() => {
     console.log('Conexão com o MongoDB estabelecida.');
     console.log('recuperei a porta', ad)

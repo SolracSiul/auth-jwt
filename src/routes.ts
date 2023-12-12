@@ -5,7 +5,7 @@ import ProductController from './controller/ProductController';
 const routes = Router();
 
 routes.get("/products", ProductController.findAll);
-routes.post("/product", ProductController.createPost);
+routes.post("/product", ProductController.createProduct);
 routes.delete("/product/:id", ProductController.DeleteById); 
 
 //ou use routes.use(authMiddleware) e terá autenticação em todas rotas abaixo.

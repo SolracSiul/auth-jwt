@@ -86,14 +86,10 @@ class ProductController{
         }
     }
 
-    async createPost(request: Request, response:Response){
+    async createProduct(request: Request, response:Response){
         try{
             const {name, price, image, description} = request.body;
-    
-            const productExist = await Product.findOne({name});
-            if(productExist){
-               throw new Error('Product já existe')
-            }
+
             const product = await Product.create({
                 name,
                 price,
