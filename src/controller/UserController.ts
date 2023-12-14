@@ -53,6 +53,29 @@ class UserController{
             })
         }
     }
+    async UpdateById(request: Request, response: Response) {
+        try {
+            const userId = request.params.id;
+            const updatedUserData = request.body;
+            
+            const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, {
+                new: true, 
+            });
+
+            if (!updatedUser) {
+                return response.status(404).json({
+                    error: 'Usuário não encontrado',
+                });
+            }
+
+            return response.json(updatedUser);
+        } catch (error) {
+            return response.status(500).json({
+                error: 'Alguma coisa deu errado',
+                message: error,
+            });
+        }
+    }
     async loginUser(request: Request, response: Response){
         try{
             const {email, password} = request.body
@@ -96,6 +119,26 @@ class UserController{
                 message: error,
             })
           }
+    }
+    async SearchById(request: Request, response: Response) {
+        try {
+            const userId = request.params.id;
+
+            const user = await User.findById(userId);
+
+            if (!user) {
+                return response.status(404).json({
+                    error: 'Usuário não encontrado',
+                });
+            }
+
+            return response.json(user);
+        } catch (error) {
+            return response.status(500).json({
+                error: 'Alguma coisa deu errado',
+                message: error,
+            });
+        }
     }
 
 }

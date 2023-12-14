@@ -27,30 +27,7 @@ class ProductController{
         }
     }
 
-    // async UpdateById(request: Request, response: Response) {
-    //     try {
-    //         const userId = request.params.id;
-    //         const updatedUserData = request.body;
-
-           
-    //         const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, {
-    //             new: true, 
-    //         });
-
-    //         if (!updatedUser) {
-    //             return response.status(404).json({
-    //                 error: 'Usuário não encontrado',
-    //             });
-    //         }
-
-    //         return response.json(updatedUser);
-    //     } catch (error) {
-    //         return response.status(500).json({
-    //             error: 'Alguma coisa deu errado',
-    //             message: error,
-    //         });
-    //     }
-    // }
+   
 
     async SearchById(request: Request, response: Response) {
         try {
@@ -99,11 +76,12 @@ class ProductController{
             });
             return response.json(product);
 
-        }catch(e){
+        }catch(e: any){
             return response.status(500).json({
-                error: "something wrong",
-                message: e,
-            })
+                error: "Something went wrong",
+                message: e.message,  // Adicionando a mensagem de erro específica
+                stack: e.stack,      // Adicionando o stack trace para mais detalhes
+            });
 
         }
     }
